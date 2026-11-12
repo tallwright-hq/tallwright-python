@@ -1,0 +1,166 @@
+name: Publish
+
+# THE ONE WORKFLOW WITH A STEP THAT PUBLISHES. It publishes the wheels of tallwright-cloud and of the
+# tallwright-core it requires to the Python Package Index, by Trusted Publishing: no credential is stored
+# anywhere. Each fence below is a refusal, and while any one stands, nothing is uploaded:
+#
+# 1. A person starts it. `workflow_dispatch` is its only trigger: no push, tag or schedule runs it.
+# 2. It runs on a tag, never a branch: refs/tags/<tag>, where the tag is sdk-v<the SDK's version> at a commit
+#    main holds, and the run was started on that tag, whose workflow is the one that runs (tools/release.py tag).
+# 3. The upload job's environment holds a person to it: it exists, a required reviewer approves the job before
+#    it starts, no administrator may bypass that, and only sdk-v* tags may deploy into it (tools/release.py
+#    environment). This is asked before the upload job is reached, because a job that names an environment
+#    nobody created creates it, unprotected.
+# 4. A person makes the release tag: an active ruleset restricts creating, moving and deleting sdk-v* tags, and
+#    release/<tag>.sha256 is exactly what the release published with the tag lists, which that person copied
+#    from Tallwright's release run (tools/release.py release).
+# 5. The two wheels are built twice, the second time from a fresh worktree of the same commit, and must be the
+#    same bytes; and they must be the bytes the release recorded in release/<tag>.sha256 (tools/release.py sums).
+# 6. A wheel the index already holds, byte for byte, is not uploaded again; one it holds with other bytes
+#    refuses the run. The SDK's wheel waits for a run in which the index already holds its core's: the first
+#    run of a new core uploads the core alone, and the next one the SDK (tools/release.py index).
+# 7. Only the upload job may ask for an OIDC token. It checks out nothing and runs no code of this
+#    repository. It checks the wheels it was handed against the hashes the build job recorded. The index
+#    exchanges the token for a short-lived credential only for the publisher registered there: this
+#    repository, this workflow file, this environment.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag to publish: sdk-v<the version tallwright-cloud declares>"
+        required: true
+        type: string
+      index:
+        description: "Where to: TestPyPI first, then PyPI. Each is its own environment and its own trusted publisher."
+        required: true
+        type: choice
+        options:
+          - testpypi
+          - pypi
+        default: testpypi
+
+permissions: {}
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      # The environment question reads the upload job's environment through GitHub's REST API.
+      actions: read
+    outputs:
+      sums: ${{ steps.sums.outputs.sums }}
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+          # The whole history, so the gate can ask whether main holds the tagged commit.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Install the build tools (hash-pinned)
+        shell: bash
+        run: python -m pip install --require-hashes -r requirements-build.txt
+
+      - name: The tag names the SDK's version, at a commit main holds, and the run was started on it
+        shell: bash
+        env:
+          TAG: ${{ inputs.tag }}
+        run: python tools/release.py tag "$TAG" "$GITHUB_REF"
+
+      - name: The upload job's environment holds a person to it
+        shell: bash
+        env:
+          INDEX: ${{ inputs.index }}
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/release.py environment "$INDEX"
+
+      - name: A person makes the release tags, and the release lists the sums recorded here
+        shell: bash
+        env:
+          TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/release.py release "$TAG"
+
+      - name: The two wheels, built twice, the second time from a fresh worktree; one commit, one set of bytes
+        shell: bash
+        run: |
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-core
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-cloud
+          git worktree add --detach "$RUNNER_TEMP/again" HEAD
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-core"
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-cloud"
+          test "$(ls "$RUNNER_TEMP/dist" | wc -l)" = 2
+          for f in "$RUNNER_TEMP"/dist/*.whl; do
+            cmp "$f" "$RUNNER_TEMP/again-dist/$(basename "$f")" || { echo "NOT REPRODUCIBLE: $(basename "$f") differs between two builds of one commit"; exit 1; }
+          done
+
+      - name: They are the wheels the release recorded, byte for byte
+        shell: bash
+        env:
+          TAG: ${{ inputs.tag }}
+        run: python tools/release.py sums "$RUNNER_TEMP/dist" "$TAG"
+
+      - name: What the index already holds is these bytes, and is not uploaded again; the SDK waits for its core
+        shell: bash
+        env:
+          INDEX: ${{ inputs.index }}
+        run: python tools/release.py index "$INDEX" "$RUNNER_TEMP/dist"
+
+      - name: The hashes of what the upload job may upload
+        id: sums
+        shell: bash
+        run: |
+          cd "$RUNNER_TEMP/dist"
+          sha256sum -- *.whl > "$RUNNER_TEMP/SHA256SUMS"
+          { echo "sums<<SUMS"; cat "$RUNNER_TEMP/SHA256SUMS"; echo "SUMS"; } >> "$GITHUB_OUTPUT"
+          { echo "### Wheels to upload"; echo; sed 's/^/    /' "$RUNNER_TEMP/SHA256SUMS"; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep them with the run
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: wheels
+          path: ${{ runner.temp }}/dist/*.whl
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: ${{ inputs.index }}
+      url: ${{ inputs.index == 'pypi' && 'https://pypi.org/project/tallwright-cloud/' || 'https://test.pypi.org/project/tallwright-cloud/' }}
+    permissions:
+      # The one permission in this repository that can publish, held by this job alone.
+      id-token: write
+    steps:
+      - name: The wheels the build job kept
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: wheels
+          path: dist
+
+      - name: They are the wheels the build job checked, byte for byte, and nothing else
+        shell: bash
+        env:
+          SUMS: ${{ needs.build.outputs.sums }}
+        run: |
+          printf '%s\n' "$SUMS" > "$RUNNER_TEMP/SHA256SUMS"
+          cd dist
+          sha256sum --check --strict "$RUNNER_TEMP/SHA256SUMS"
+          test "$(ls | wc -l)" = "$(grep -c . "$RUNNER_TEMP/SHA256SUMS")"
+
+      - name: Upload, with the attestations Trusted Publishing makes
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: dist/
+          repository-url: ${{ inputs.index == 'pypi' && 'https://upload.pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}

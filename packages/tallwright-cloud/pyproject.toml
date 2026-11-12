@@ -1,0 +1,51 @@
+# Apache-2.0: the license text and the NOTICE are beside this file, and the wheel carries both.
+# Deliberately depends on tallwright-core and the standard library alone: the HTTP client is urllib,
+# so installing it adds nothing to a dependency set a customer keeps hash-pinned.
+#
+# The metadata names the product as its author and nobody's address, and the license as one expression
+# with no classifier beside it. `Private :: Do Not Upload`, which every index refuses, keeps a build of
+# this from being uploaded by accident; it is removed in the commit a release is made from, and only there.
+[build-system]
+# Pinned for the reason given in tallwright-core's pyproject.
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tallwright-cloud"
+# A release candidate first, and 1.0.0 once it has been used for real. While it is the only release, a
+# plain `pip install tallwright-cloud` installs it: pip leaves a pre-release out only when a final release
+# matches. `__version__` and the User-Agent say the same.
+version = "1.0.0rc1"
+description = "Tallwright - Cloud Proof from Python: the content stays with you, a salted address is recorded"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Tallwright" }]
+keywords = ["ai-agents", "audit", "tamper-evident", "evidence", "commitment"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Legal Industry",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "tallwright-core==0.1.*",
+]
+
+# Source is the public repository the release is published from: PyPI marks a Source address verified only
+# when it is the repository whose workflow uploaded the release.
+[project.urls]
+Homepage = "https://www.tallwright.com"
+Documentation = "https://docs.tallwright.com/python"
+Source = "https://github.com/tallwright-hq/tallwright-python"
+Issues = "https://github.com/tallwright-hq/tallwright-python/issues"
+
+[project.scripts]
+tallwright-cloud = "tallwright_cloud.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tallwright_cloud"]

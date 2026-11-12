@@ -1,0 +1,5 @@
+Tallwright Cloud SDK
+Copyright 2026 David Jöbstl
+
+Licensed under the Apache License, Version 2.0: tallwright-cloud. The license text is in the
+LICENSE file beside this one. The SDK requires tallwright-core, which is under the same license.

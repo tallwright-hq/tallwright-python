@@ -1,0 +1,85 @@
+name: CI
+
+# Builds the two wheels from this repository on Linux, twice, and holds them to the bytes the release recorded;
+# then installs them on Linux, Windows and macOS, Python 3.11 to 3.13, and asks the installed SDK who it is.
+# Publishes nothing: that is publish.yml, started by a person.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Install the build tools (hash-pinned)
+        shell: bash
+        run: python -m pip install --require-hashes -r requirements-build.txt
+
+      - name: The two wheels, built twice, the second time from a fresh worktree; one commit, one set of bytes
+        shell: bash
+        run: |
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-core
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-cloud
+          git worktree add --detach "$RUNNER_TEMP/again" HEAD
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-core"
+          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-cloud"
+          for f in "$RUNNER_TEMP"/dist/*.whl; do
+            cmp "$f" "$RUNNER_TEMP/again-dist/$(basename "$f")" || { echo "NOT REPRODUCIBLE: $(basename "$f")"; exit 1; }
+          done
+
+      - name: They are the wheels the release of this version recorded, byte for byte
+        shell: bash
+        run: python tools/release.py sums "$RUNNER_TEMP/dist"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: wheels
+          path: ${{ runner.temp }}/dist/*.whl
+          if-no-files-found: error
+
+  install:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025, macos-15]
+        python: ["3.11", "3.12", "3.13"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: wheels
+          path: dist
+
+      - name: Install the SDK and its core from the wheels built here, their other dependencies from the index
+        shell: bash
+        run: |
+          python -m venv venv
+          if [ -x venv/Scripts/python.exe ]; then py=venv/Scripts/python.exe; else py=venv/bin/python; fi
+          # Both wheels themselves, by path: so the core installed is the one built here, never a higher 0.1.x an
+          # index offers, and no pre-release of anything else is let in to install a pre-release of this.
+          "$py" -m pip install --disable-pip-version-check -q dist/tallwright_core-*.whl dist/tallwright_cloud-*.whl
+          "$py" -c "import tallwright_cloud, tallwright_core; print('tallwright-cloud', tallwright_cloud.__version__)"
+          "$py" -m tallwright_cloud.cli --help > /dev/null
