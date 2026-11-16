@@ -13,8 +13,20 @@ address into an append-only log, a witness countersigns the log's head, and for 
 ask for an **exhibit**: one file that anyone can check offline with the public verifier, against the
 content you choose to disclose to them.
 
-This repository holds the SDK, [`tallwright-cloud`](packages/tallwright-cloud), and the core it
-builds on, [`tallwright-core`](packages/tallwright-core).
+This repository holds the SDK, [`tallwright-cloud`](packages/tallwright-cloud), the core it
+builds on, [`tallwright-core`](packages/tallwright-core), and the framework integrations below.
+
+## Integrations
+
+Each is a thin adapter on the SDK: it decides when to hand the client an event and what content to
+hand it, and nothing else ([the adapter contract](https://docs.tallwright.com/adapters)). Each one's
+README says how to add it and what stays outside the record.
+
+- [`tallwright-langgraph`](packages/tallwright-langgraph): LangChain and LangGraph v1, as one middleware.
+- [`tallwright-mcp`](packages/tallwright-mcp): MCP tool calls, by wrapping the client session.
+- [`tallwright-openai-agents`](packages/tallwright-openai-agents): the OpenAI Agents SDK, as its run hooks.
+- [`tallwright-otel`](packages/tallwright-otel): OpenTelemetry generative-AI spans, as a span processor.
+  It sees a span only once it has ended, so it records after the fact and cannot hold a tool back.
 
 ## What the SDK does
 
@@ -47,12 +59,15 @@ the log and runs the witness, and nothing here claims they are independent of ea
 ## Installation
 
 ```bash
-pip install tallwright-cloud==1.0.0rc1
+pip install tallwright-cloud==1.0.0rc2
 ```
 
 Python 3.11, 3.12 or 3.13. This is a release candidate: pin the version as shown. The SDK requires
 `tallwright-core`, which brings `pydantic` 2 and `rfc8785`; its HTTP client is the standard
 library's.
+
+An integration is installed by its name, for example `pip install tallwright-langgraph`, and brings
+the SDK with it.
 
 ## Quickstart
 
@@ -136,5 +151,6 @@ SHA-256 of each release's wheels, the bytes PyPI serves. What changed is in
 
 ## License
 
-`tallwright-cloud` and `tallwright-core` are licensed under the Apache License, Version 2.0: see
+`tallwright-cloud`, `tallwright-core` and the integrations are licensed under the Apache License,
+Version 2.0: see
 [LICENSE](LICENSE) and [NOTICE](NOTICE). Copyright 2026 David Jöbstl.

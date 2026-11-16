@@ -9,6 +9,8 @@ networked or external-service code lives here.
 - **`schema.py`** — the 14-field record envelope,
   RFC 8785 (JCS) canonicalization, record hash, and hash-chain (`link` / `verify_chain`).
   Post-seal fields (`anchor_receipt`, `certification_pointer`) are excluded from the hash.
+- **`redact.py`** — `scrub`: named credential and reasoning keys replaced wherever an adapter finds
+  them, with the path of each replacement, so every framework adapter withholds the same keys.
 
 Status: **implemented + tested** (the first approved production code). Anchoring, signing,
 storage, and capture live in later packages.

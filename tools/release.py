@@ -9,7 +9,7 @@
 
 THE TAG. A release is one version at one commit. The workflow checks out `refs/tags/<tag>`, never a branch,
 whose head moves. The tag is `sdk-v<version>`, the version `tallwright-cloud` declares, at a commit on main.
-`tallwright-core` keeps a version of its own, and an index takes each version of it once. REF, when given,
+`tallwright-core` and the adapters keep versions of their own, and an index takes each version of each once. REF, when given,
 is the ref the run was started on, and must be `refs/tags/<tag>`: the workflow that runs, its upload job
 included, is that ref's, so the commit judged here is the commit whose workflow runs.
 
@@ -24,22 +24,30 @@ tag writes the checks. An active ruleset must restrict the creation, update and 
 `refs/tags/sdk-v*`, so that a deploy key can do none of them. GitHub shows who may bypass a ruleset only
 to those who may edit it; where it is shown, a deploy key on that list refuses, and where it is not, that
 none is there is the owner's setting. The release tag is made in GitHub's web UI, by publishing the
-release, and its description lists the SHA-256 of the two wheels as Tallwright's release run showed
+release, and its description lists the SHA-256 of the wheels as Tallwright's release run showed
 them. `release/<tag>.sha256` travels with the source it vouches for, and whoever writes the one can write
 the other; the release's list is written by the person who published it, so the record must be that list.
 
-THE SUMS. Each release records the SHA-256 of its two wheels in `release/<tag>.sha256`, as Tallwright's
+THE SUMS. Each release records the SHA-256 of its wheels in `release/<tag>.sha256`, as Tallwright's
 own build made and tested them. A wheel built here from this repository must be those bytes, so what is
 uploaded is what was tested, and this repository's source is what it was built from.
 
 THE INDEX. An index never takes a file twice. A wheel whose version the index already holds is left out of
 the upload when the index holds exactly these bytes, and refuses the run when it holds other ones. The SDK
-requires the core, so its wheel is uploaded only by a run in which the index already holds the core's
-wheel beside it, byte for byte: the run that uploads a new core holds the SDK back, and the next run
-uploads it. No run leaves the SDK on an index that lacks the core it requires.
+and the adapters require the core, so their wheels are uploaded only by a run in which the index already
+holds the core's wheel beside them, byte for byte: the run that uploads a new core holds the others back,
+and the next run uploads them. No run leaves a distribution on an index that lacks the core it requires.
+
+A NEW PROJECT. An index creates a project it does not hold yet through a pending trusted publisher, and it
+takes one pending publisher for one repository, workflow and environment at a time: it refuses a second, and
+the one used becomes the project's own publisher, which frees the configuration for the next. So a run creates
+at most one project, the first by name, and holds the other new ones back: a run that carried two would upload
+the first and fail at the second, half way. Register the next one's pending publisher once the run before has
+created its project, and run again.
 
 Exit 0 when nothing stands, 1 otherwise. Nothing is uploaded from here; `index` may remove from DIST a wheel
-the index already holds, byte for byte, and the SDK's wheel while its core is not there yet.
+the index already holds, byte for byte, every wheel but the core's while that core is not there yet, and
+every wheel of a new project but the first.
 """
 
 from __future__ import annotations
@@ -59,7 +67,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SDK = "tallwright-cloud"
-#: The distribution the SDK requires: an index must hold it before it takes the SDK.
+#: The distribution the SDK and the adapters require: an index must hold it before it takes any of them.
 CORE = "tallwright-core"
 TAG_PREFIX = "sdk-v"
 #: The one deployment policy the upload's environment may have: the release tags, nothing else.
@@ -224,7 +232,7 @@ def release_problems(tag: str, release: str | None, wanted: dict[str, str] | Non
     if not isinstance(found, dict) or found.get("tag_name") != tag:
         return [
             f"no published release of {tag} can be read. A person publishes it in GitHub's web UI, which makes the tag, "
-            "and lists in its description the SHA-256 of the two wheels as Tallwright's release run showed them"
+            "and lists in its description the SHA-256 of the wheels as Tallwright's release run showed them"
         ]
     body = found.get("body")
     listed = listed_sums(body) if isinstance(body, str) else {}
@@ -279,13 +287,16 @@ def _wheel_name(name: str) -> tuple[str, str]:
     return project.replace("_", "-"), version
 
 
-def index_problems(index: str, wheels: dict[str, str], look: Look) -> tuple[list[str], list[str], list[str]]:
-    """(the wheels the index already holds byte for byte, the SDK's wheels that wait for their core, why the run
-    is refused) for ``wheels`` on ``index``.
+def index_problems(
+    index: str, wheels: dict[str, str], look: Look
+) -> tuple[list[str], list[str], list[str], list[str]]:
+    """(the wheels the index already holds byte for byte, the wheels that wait for their core, the wheels the run
+    would upload of a project the index does not hold yet, by project name, why the run is refused) for ``wheels``
+    on ``index``.
 
-    The SDK waits unless the index holds, byte for byte, the one core wheel beside it: uploaded in the same run,
-    the SDK could reach the index and its core not (refused, squatted, or a run that failed half way), and the
-    SDK would stay there, requiring a core that somebody else may then upload.
+    Every wheel but the core's waits unless the index holds, byte for byte, the one core wheel beside it: uploaded
+    in the same run, the SDK or an adapter could reach the index and its core not (refused, squatted, or a run
+    that failed half way), and would stay there, requiring a core that somebody else may then upload.
     """
     held, problems = [], []
     for name, digest in sorted(wheels.items()):
@@ -307,14 +318,19 @@ def index_problems(index: str, wheels: dict[str, str], look: Look) -> tuple[list
             problems.append(f"{index} holds {project} {version} without {name}: a version is uploaded whole, once")
     cores = [name for name in wheels if _wheel_name(name)[0] == CORE]
     waiting = [] if len(cores) == 1 and cores[0] in held else sorted(
-        name for name in wheels if _wheel_name(name)[0] == SDK and name not in held
+        name for name in wheels if _wheel_name(name)[0] != CORE and name not in held
     )
     if not problems and len(held) + len(waiting) == len(wheels):
         problems.append(
             f"{', '.join(waiting)} waits for the one {CORE} wheel beside it to be on {index}, and this run uploads none"
             if waiting else f"{index} holds every one of these wheels already, so there is nothing to upload"
         )
-    return held, waiting, problems
+    uploading = [name for name in sorted(wheels) if name not in held and name not in waiting]
+    new = sorted(
+        (name for name in uploading if look(index, f"{_wheel_name(name)[0]}/json") is None),
+        key=lambda name: (_wheel_name(name)[0], name),
+    )
+    return held, waiting, new, problems
 
 
 def _ask_github(path: str) -> str | None:  # pragma: no cover - networked: gh and GitHub
@@ -381,14 +397,24 @@ def main(
         problems = sums_problems(_wheels(Path(args[1])), recorded(tag, root), tag)
     else:
         dist = Path(args[2])
-        held, waiting, problems = index_problems(args[1], _wheels(dist), look)
+        held, waiting, new, problems = index_problems(args[1], _wheels(dist), look)
+        creates = _wheel_name(new[0])[0] if new else ""
+        later = [name for name in new if _wheel_name(name)[0] != creates]
         if not problems:
-            for name in held + waiting:
+            for name in held + waiting + later:
                 (dist / name).unlink()
             done = "".join(f"\nalready on {args[1]}, byte for byte, so not uploaded again: {name}" for name in held)
             done += "".join(
                 f"\nheld back until {args[1]} holds the {CORE} wheel this run uploads; run again after it: {name}"
                 for name in waiting
+            )
+            if creates:
+                done += f"\nthis run creates {creates} on {args[1]}, through its pending trusted publisher"
+            done += "".join(
+                f"\nheld back: {args[1]} takes one pending trusted publisher for this repository, workflow and environment"
+                f" at a time, so a run creates one project; register the one for {_wheel_name(name)[0]} once this run has"
+                f" created {creates}, then run again: {name}"
+                for name in later
             )
     for problem in problems:
         print(f"REFUSED: {problem}")

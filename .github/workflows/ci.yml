@@ -1,7 +1,8 @@
 name: CI
 
-# Builds the two wheels from this repository on Linux, twice, and holds them to the bytes the release recorded;
-# then installs them on Linux, Windows and macOS, Python 3.11 to 3.13, and asks the installed SDK who it is.
+# Builds every package's wheel from this repository on Linux, twice, and holds them to the bytes the release
+# recorded; then installs the SDK and its core on Linux, Windows and macOS, Python 3.11 to 3.13, and asks the
+# installed SDK who it is; and installs each adapter in an environment of its own and imports what it exports.
 # Publishes nothing: that is publish.yml, started by a person.
 on:
   push:
@@ -32,14 +33,13 @@ jobs:
         shell: bash
         run: python -m pip install --require-hashes -r requirements-build.txt
 
-      - name: The two wheels, built twice, the second time from a fresh worktree; one commit, one set of bytes
+      - name: Every package's wheel, built twice, the second time from a fresh worktree; one commit, one set of bytes
         shell: bash
         run: |
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-core
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-cloud
+          for package in packages/*/; do python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" "$package"; done
           git worktree add --detach "$RUNNER_TEMP/again" HEAD
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-core"
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-cloud"
+          for package in packages/*/; do python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/$package"; done
+          test "$(ls "$RUNNER_TEMP/dist" | wc -l)" = "$(ls -d packages/*/ | wc -l)"
           for f in "$RUNNER_TEMP"/dist/*.whl; do
             cmp "$f" "$RUNNER_TEMP/again-dist/$(basename "$f")" || { echo "NOT REPRODUCIBLE: $(basename "$f")"; exit 1; }
           done
@@ -83,3 +83,36 @@ jobs:
           "$py" -m pip install --disable-pip-version-check -q dist/tallwright_core-*.whl dist/tallwright_cloud-*.whl
           "$py" -c "import tallwright_cloud, tallwright_core; print('tallwright-cloud', tallwright_cloud.__version__)"
           "$py" -m tallwright_cloud.cli --help > /dev/null
+
+  adapters:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: wheels
+          path: dist
+
+      - name: Each adapter in an environment of its own, from the wheels built here, its framework from the index
+        shell: bash
+        run: |
+          for wheel in dist/tallwright_*.whl; do
+            module="$(basename "$wheel" | cut -d- -f1)"
+            case "$module" in tallwright_core|tallwright_cloud) continue ;; esac
+            python -m venv "venv-$module"
+            # The three wheels themselves, by path, as above: the core and the SDK installed are the ones built here.
+            "venv-$module/bin/python" -m pip install --disable-pip-version-check -q \
+              dist/tallwright_core-*.whl dist/tallwright_cloud-*.whl "$wheel"
+            # Every name the adapter exports, resolved: a module the wheel left out, or a requirement it does not
+            # declare, fails here and not on the first customer's machine.
+            "venv-$module/bin/python" -c 'import importlib, sys; m = importlib.import_module(sys.argv[1]); [getattr(m, n) for n in m.__all__]; print(sys.argv[1], m.__version__)' "$module"
+          done

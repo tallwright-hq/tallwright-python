@@ -1,0 +1,1815 @@
+{
+  "components": [
+    {
+      "bom-ref": "PyYAML==6.0.3",
+      "description": "YAML parser and emitter for Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Download-URL",
+          "type": "distribution",
+          "url": "https://pypi.org/project/PyYAML/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://pyyaml.org/wiki/PyYAMLDocumentation"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/yaml/pyyaml/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Mailing lists",
+          "type": "other",
+          "url": "http://lists.sourceforge.net/lists/listinfo/yaml-core"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source Code",
+          "type": "other",
+          "url": "https://github.com/yaml/pyyaml"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: CI",
+          "type": "other",
+          "url": "https://github.com/yaml/pyyaml/actions"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://pyyaml.org/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "PyYAML",
+      "purl": "pkg:pypi/pyyaml@6.0.3",
+      "type": "library",
+      "version": "6.0.3"
+    },
+    {
+      "bom-ref": "annotated-types==0.8.0",
+      "description": "Reusable constraint types to use with typing.Annotated",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/annotated-types/annotated-types"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/annotated-types/annotated-types/releases"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/annotated-types/annotated-types"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "annotated-types",
+      "purl": "pkg:pypi/annotated-types@0.8.0",
+      "type": "library",
+      "version": "0.8.0"
+    },
+    {
+      "bom-ref": "anyio==4.14.2",
+      "description": "High-level concurrency and networking framework on top of asyncio or Trio",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://anyio.readthedocs.io/en/latest/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/agronholm/anyio/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source code",
+          "type": "other",
+          "url": "https://github.com/agronholm/anyio"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://anyio.readthedocs.io/en/stable/versionhistory.html"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "anyio",
+      "purl": "pkg:pypi/anyio@4.14.2",
+      "type": "library",
+      "version": "4.14.2"
+    },
+    {
+      "bom-ref": "certifi==2026.10.23",
+      "description": "Python package for providing Mozilla's CA Bundle.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/certifi/python-certifi"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/certifi/python-certifi"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MPL-2.0"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+          }
+        }
+      ],
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2026.10.23",
+      "type": "library",
+      "version": "2026.10.23"
+    },
+    {
+      "bom-ref": "charset-normalizer==3.5.0",
+      "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://charset-normalizer.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/jawah/charset_normalizer/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Code",
+          "type": "other",
+          "url": "https://github.com/jawah/charset_normalizer"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/jawah/charset_normalizer/blob/master/CHANGELOG.md"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "charset-normalizer",
+      "purl": "pkg:pypi/charset-normalizer@3.5.0",
+      "type": "library",
+      "version": "3.5.0"
+    },
+    {
+      "bom-ref": "distro==1.9.0",
+      "description": "Distro - an OS platform information API",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/python-distro/distro"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "distro",
+      "purl": "pkg:pypi/distro@1.9.0",
+      "type": "library",
+      "version": "1.9.0"
+    },
+    {
+      "bom-ref": "h11==0.16.0",
+      "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/python-hyper/h11"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "h11",
+      "purl": "pkg:pypi/h11@0.16.0",
+      "type": "library",
+      "version": "0.16.0"
+    },
+    {
+      "bom-ref": "httpcore==1.0.9",
+      "description": "A minimal low-level HTTP client.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://www.encode.io/httpcore"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/encode/httpcore"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://www.encode.io/httpcore/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "httpcore",
+      "purl": "pkg:pypi/httpcore@1.0.9",
+      "type": "library",
+      "version": "1.0.9"
+    },
+    {
+      "bom-ref": "httpx==0.28.1",
+      "description": "The next generation HTTP client.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://www.python-httpx.org"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/encode/httpx"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/encode/httpx/blob/master/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/encode/httpx"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
+      "name": "httpx",
+      "purl": "pkg:pypi/httpx@0.28.1",
+      "type": "library",
+      "version": "0.28.1"
+    },
+    {
+      "bom-ref": "idna==3.18",
+      "description": "Internationalized Domain Names in Applications (IDNA)",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Issue tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/kjd/idna/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/kjd/idna"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/kjd/idna/blob/master/HISTORY.md"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.18",
+      "type": "library",
+      "version": "3.18"
+    },
+    {
+      "bom-ref": "jsonpatch==1.33",
+      "description": "Apply JSON-Patches (RFC 6902) ",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://python-json-patch.readthedocs.org/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Test Coverage",
+          "type": "other",
+          "url": "https://coveralls.io/r/stefankoegl/python-json-patch"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Website",
+          "type": "other",
+          "url": "https://github.com/stefankoegl/python-json-patch"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: PyPI",
+          "type": "other",
+          "url": "https://pypi.org/pypi/jsonpatch"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Tests",
+          "type": "other",
+          "url": "https://travis-ci.org/stefankoegl/python-json-patch"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/stefankoegl/python-json-patch.git"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/stefankoegl/python-json-patch"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
+      "name": "jsonpatch",
+      "purl": "pkg:pypi/jsonpatch@1.33",
+      "type": "library",
+      "version": "1.33"
+    },
+    {
+      "bom-ref": "jsonpointer==3.1.1",
+      "description": "Identify specific nodes in a JSON document (RFC 6901) ",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/stefankoegl/python-json-pointer"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
+      "name": "jsonpointer",
+      "purl": "pkg:pypi/jsonpointer@3.1.1",
+      "type": "library",
+      "version": "3.1.1"
+    },
+    {
+      "bom-ref": "langchain==1.3.15",
+      "description": "Building applications with LLMs through composability",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://reference.langchain.com/python/langchain/langchain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/langchain-ai/langchain/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Slack",
+          "type": "other",
+          "url": "https://www.langchain.com/join-community"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Reddit",
+          "type": "other",
+          "url": "https://www.reddit.com/r/LangChain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Twitter",
+          "type": "other",
+          "url": "https://x.com/langchain_oss"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/langchain-ai/langchain/releases?q=tag%3A%22langchain%3D%3D1%22"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/langchain-ai/langchain"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://docs.langchain.com/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langchain",
+      "purl": "pkg:pypi/langchain@1.3.15",
+      "type": "library",
+      "version": "1.3.15"
+    },
+    {
+      "bom-ref": "langchain-core==1.5.4",
+      "description": "Building applications with LLMs through composability",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://reference.langchain.com/python/langchain_core/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/langchain-ai/langchain/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Slack",
+          "type": "other",
+          "url": "https://www.langchain.com/join-community"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Reddit",
+          "type": "other",
+          "url": "https://www.reddit.com/r/LangChain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Twitter",
+          "type": "other",
+          "url": "https://x.com/langchain_oss"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/langchain-ai/langchain/releases?q=%22langchain-core%3D%3D1%22"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/langchain-ai/langchain"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://docs.langchain.com/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langchain-core",
+      "purl": "pkg:pypi/langchain-core@1.5.4",
+      "type": "library",
+      "version": "1.5.4"
+    },
+    {
+      "bom-ref": "langchain-protocol==0.0.18",
+      "description": "Python bindings for the LangChain agent streaming protocol",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/langchain-ai/agent-protocol/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/langchain-ai/agent-protocol"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/langchain-ai/agent-protocol/tree/main/streaming"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langchain-protocol",
+      "purl": "pkg:pypi/langchain-protocol@0.0.18",
+      "type": "library",
+      "version": "0.0.18"
+    },
+    {
+      "bom-ref": "langgraph==1.2.19",
+      "description": "Building stateful, multi-actor applications with LLMs",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://reference.langchain.com/python/langgraph/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/langchain-ai/langgraph/tree/main/libs/langgraph"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Slack",
+          "type": "other",
+          "url": "https://www.langchain.com/join-community"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Reddit",
+          "type": "other",
+          "url": "https://www.reddit.com/r/LangChain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Twitter",
+          "type": "other",
+          "url": "https://x.com/langchain_oss"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/langchain-ai/langgraph/releases"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://docs.langchain.com/oss/python/langgraph/overview"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langgraph",
+      "purl": "pkg:pypi/langgraph@1.2.19",
+      "type": "library",
+      "version": "1.2.19"
+    },
+    {
+      "bom-ref": "langgraph-checkpoint==4.3.1",
+      "description": "Library with base interfaces for LangGraph checkpoint savers.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Slack",
+          "type": "other",
+          "url": "https://www.langchain.com/join-community"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Reddit",
+          "type": "other",
+          "url": "https://www.reddit.com/r/LangChain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Twitter",
+          "type": "other",
+          "url": "https://x.com/langchain_oss"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langgraph-checkpoint",
+      "purl": "pkg:pypi/langgraph-checkpoint@4.3.1",
+      "type": "library",
+      "version": "4.3.1"
+    },
+    {
+      "bom-ref": "langgraph-prebuilt==1.1.0",
+      "description": "Library with high-level APIs for creating and executing LangGraph agents and tools.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Slack",
+          "type": "other",
+          "url": "https://www.langchain.com/join-community"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Reddit",
+          "type": "other",
+          "url": "https://www.reddit.com/r/LangChain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Twitter",
+          "type": "other",
+          "url": "https://x.com/langchain_oss"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langgraph-prebuilt",
+      "purl": "pkg:pypi/langgraph-prebuilt@1.1.0",
+      "type": "library",
+      "version": "1.1.0"
+    },
+    {
+      "bom-ref": "langgraph-sdk==0.4.6",
+      "description": "SDK for interacting with LangGraph API",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/langchain-ai/langgraph/tree/main/libs/sdk-py"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Slack",
+          "type": "other",
+          "url": "https://www.langchain.com/join-community"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Reddit",
+          "type": "other",
+          "url": "https://www.reddit.com/r/LangChain/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Twitter",
+          "type": "other",
+          "url": "https://x.com/langchain_oss"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langgraph-sdk",
+      "purl": "pkg:pypi/langgraph-sdk@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "langsmith==0.10.18",
+      "description": "Client library to connect to the LangSmith Observability and Evaluation Platform.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://docs.smith.langchain.com/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/langchain-ai/langsmith-sdk"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://smith.langchain.com/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "langsmith",
+      "purl": "pkg:pypi/langsmith@0.10.18",
+      "type": "library",
+      "version": "0.10.18"
+    },
+    {
+      "bom-ref": "orjson==3.11.9",
+      "description": "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: documentation",
+          "type": "documentation",
+          "url": "https://github.com/ijl/orjson"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: source",
+          "type": "other",
+          "url": "https://github.com/ijl/orjson"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: changelog",
+          "type": "release-notes",
+          "url": "https://github.com/ijl/orjson/blob/master/CHANGELOG.md"
+        }
+      ],
+      "licenses": [
+        {
+          "acknowledgement": "declared",
+          "expression": "MPL-2.0 AND (Apache-2.0 OR MIT)"
+        }
+      ],
+      "name": "orjson",
+      "purl": "pkg:pypi/orjson@3.11.9",
+      "type": "library",
+      "version": "3.11.9"
+    },
+    {
+      "bom-ref": "ormsgpack==1.12.2",
+      "description": "Fast, correct Python msgpack library supporting dataclasses, datetimes, and numpy",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/ormsgpack/ormsgpack"
+        }
+      ],
+      "licenses": [
+        {
+          "acknowledgement": "declared",
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "ormsgpack",
+      "purl": "pkg:pypi/ormsgpack@1.12.2",
+      "type": "library",
+      "version": "1.12.2"
+    },
+    {
+      "bom-ref": "packaging==26.3",
+      "description": "Core utilities for Python packages",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://packaging.pypa.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/pypa/packaging"
+        }
+      ],
+      "licenses": [
+        {
+          "acknowledgement": "declared",
+          "expression": "Apache-2.0 OR BSD-2-Clause"
+        }
+      ],
+      "name": "packaging",
+      "purl": "pkg:pypi/packaging@26.3",
+      "type": "library",
+      "version": "26.3"
+    },
+    {
+      "bom-ref": "pydantic==2.13.4",
+      "description": "Data validation using Python type hints",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://docs.pydantic.dev"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/pydantic/pydantic"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Funding",
+          "type": "other",
+          "url": "https://github.com/sponsors/samuelcolvin"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://docs.pydantic.dev/latest/changelog/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/pydantic/pydantic"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "pydantic",
+      "purl": "pkg:pypi/pydantic@2.13.4",
+      "type": "library",
+      "version": "2.13.4"
+    },
+    {
+      "bom-ref": "pydantic_core==2.46.4",
+      "description": "Core functionality for Pydantic validation and serialization",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/pydantic/pydantic/tree/main/pydantic-core"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Funding",
+          "type": "other",
+          "url": "https://github.com/sponsors/samuelcolvin"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/pydantic"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/pydantic/pydantic"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "pydantic_core",
+      "purl": "pkg:pypi/pydantic-core@2.46.4",
+      "type": "library",
+      "version": "2.46.4"
+    },
+    {
+      "bom-ref": "requests==2.34.2",
+      "description": "Python HTTP for Humans.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://requests.readthedocs.io"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/psf/requests"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "Apache-2.0"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "requests",
+      "purl": "pkg:pypi/requests@2.34.2",
+      "type": "library",
+      "version": "2.34.2"
+    },
+    {
+      "bom-ref": "requests-toolbelt==1.0.0",
+      "description": "A utility belt for advanced users of python-requests",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/requests/toolbelt"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/requests/toolbelt/blob/master/HISTORY.rst"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://toolbelt.readthedocs.io/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "requests-toolbelt",
+      "purl": "pkg:pypi/requests-toolbelt@1.0.0",
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "bom-ref": "rfc8785==0.1.4",
+      "description": "A pure-Python implementation of RFC 8785 (JSON Canonicalization Scheme)",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://trailofbits.github.io/rfc8785.py/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/trailofbits/rfc8785.py/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/trailofbits/rfc8785.py"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://pypi.org/project/rfc8785"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "rfc8785",
+      "purl": "pkg:pypi/rfc8785@0.1.4",
+      "type": "library",
+      "version": "0.1.4"
+    },
+    {
+      "bom-ref": "sniffio==1.3.1",
+      "description": "Sniff out which async library your code is running under",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://sniffio.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://sniffio.readthedocs.io/en/latest/history.html"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/python-trio/sniffio"
+        }
+      ],
+      "licenses": [
+        {
+          "acknowledgement": "declared",
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "sniffio",
+      "purl": "pkg:pypi/sniffio@1.3.1",
+      "type": "library",
+      "version": "1.3.1"
+    },
+    {
+      "bom-ref": "tallwright-cloud==1.0.0rc2",
+      "description": "Tallwright - Cloud Proof from Python: the content stays with you, a salted address is recorded",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://docs.tallwright.com/python"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/tallwright-hq/tallwright-python/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/tallwright-hq/tallwright-python"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://www.tallwright.com"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "tallwright-cloud",
+      "purl": "pkg:pypi/tallwright-cloud@1.0.0rc2",
+      "type": "library",
+      "version": "1.0.0rc2"
+    },
+    {
+      "bom-ref": "tallwright-core==0.1.1",
+      "description": "Tallwright - shared record schema, content-addressing, and RFC 6962 Merkle primitives",
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "tallwright-core",
+      "purl": "pkg:pypi/tallwright-core@0.1.1",
+      "type": "library",
+      "version": "0.1.1"
+    },
+    {
+      "bom-ref": "tenacity==9.1.4",
+      "description": "Retry code until it succeeds",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/jd/tenacity"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "tenacity",
+      "purl": "pkg:pypi/tenacity@9.1.4",
+      "type": "library",
+      "version": "9.1.4"
+    },
+    {
+      "bom-ref": "typing-inspection==0.4.4",
+      "description": "Runtime typing introspection tools",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://pydantic.github.io/typing-inspection/dev/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/pydantic/typing-inspection"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/pydantic/typing-inspection/blob/main/HISTORY.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/pydantic/typing-inspection"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "typing-inspection",
+      "purl": "pkg:pypi/typing-inspection@0.4.4",
+      "type": "library",
+      "version": "0.4.4"
+    },
+    {
+      "bom-ref": "typing_extensions==4.16.0",
+      "description": "Backported and Experimental Type Hints for Python 3.9+",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://typing-extensions.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/python/typing_extensions/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Q & A",
+          "type": "other",
+          "url": "https://github.com/python/typing/discussions"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changes",
+          "type": "release-notes",
+          "url": "https://github.com/python/typing_extensions/blob/main/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/python/typing_extensions"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Home",
+          "type": "website",
+          "url": "https://github.com/python/typing_extensions"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "PSF-2.0"
+          }
+        }
+      ],
+      "name": "typing_extensions",
+      "purl": "pkg:pypi/typing-extensions@4.16.0",
+      "type": "library",
+      "version": "4.16.0"
+    },
+    {
+      "bom-ref": "urllib3==2.8.0",
+      "description": "HTTP library with thread-safe connection pooling, file post, and more.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://urllib3.readthedocs.io"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/urllib3/urllib3/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Code",
+          "type": "other",
+          "url": "https://github.com/urllib3/urllib3"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Security policy",
+          "type": "other",
+          "url": "https://urllib3.readthedocs.io/en/latest/security.html"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/urllib3/urllib3/blob/main/CHANGES.rst"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@2.8.0",
+      "type": "library",
+      "version": "2.8.0"
+    },
+    {
+      "bom-ref": "uuid_utils==0.17.0",
+      "description": "Fast, drop-in replacement for Python's uuid module, powered by Rust.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://github.com/aminalaee/uuid-utils"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/aminalaee/uuid-utils/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/aminalaee/uuid-utils"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "uuid_utils",
+      "purl": "pkg:pypi/uuid-utils@0.17.0",
+      "type": "library",
+      "version": "0.17.0"
+    },
+    {
+      "bom-ref": "websockets==15.0.1",
+      "description": "An implementation of the WebSocket Protocol (RFC 6455 & 7692)",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://websockets.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/python-websockets/websockets/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Funding",
+          "type": "other",
+          "url": "https://tidelift.com/subscription/pkg/pypi-websockets?utm_source=pypi-websockets&utm_medium=referral&utm_campaign=readme"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://websockets.readthedocs.io/en/stable/project/changelog.html"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/python-websockets/websockets"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
+      "name": "websockets",
+      "purl": "pkg:pypi/websockets@15.0.1",
+      "type": "library",
+      "version": "15.0.1"
+    },
+    {
+      "bom-ref": "xxhash==4.0.0",
+      "description": "Python binding for xxHash",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/ifduyue/python-xxhash"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-2-Clause"
+          }
+        }
+      ],
+      "name": "xxhash",
+      "purl": "pkg:pypi/xxhash@4.0.0",
+      "type": "library",
+      "version": "4.0.0"
+    },
+    {
+      "bom-ref": "zstandard==0.25.0",
+      "description": "Zstandard bindings for Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://python-zstandard.readthedocs.io/en/latest/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/indygreg/python-zstandard"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "zstandard",
+      "purl": "pkg:pypi/zstandard@0.25.0",
+      "type": "library",
+      "version": "0.25.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "PyYAML==6.0.3"
+    },
+    {
+      "ref": "annotated-types==0.8.0"
+    },
+    {
+      "dependsOn": [
+        "idna==3.18",
+        "typing_extensions==4.16.0"
+      ],
+      "ref": "anyio==4.14.2"
+    },
+    {
+      "ref": "certifi==2026.10.23"
+    },
+    {
+      "ref": "charset-normalizer==3.5.0"
+    },
+    {
+      "ref": "distro==1.9.0"
+    },
+    {
+      "ref": "h11==0.16.0"
+    },
+    {
+      "dependsOn": [
+        "anyio==4.14.2",
+        "certifi==2026.10.23",
+        "h11==0.16.0"
+      ],
+      "ref": "httpcore==1.0.9"
+    },
+    {
+      "dependsOn": [
+        "anyio==4.14.2",
+        "certifi==2026.10.23",
+        "httpcore==1.0.9",
+        "idna==3.18",
+        "zstandard==0.25.0"
+      ],
+      "ref": "httpx==0.28.1"
+    },
+    {
+      "ref": "idna==3.18"
+    },
+    {
+      "dependsOn": [
+        "jsonpointer==3.1.1"
+      ],
+      "ref": "jsonpatch==1.33"
+    },
+    {
+      "ref": "jsonpointer==3.1.1"
+    },
+    {
+      "dependsOn": [
+        "PyYAML==6.0.3",
+        "jsonpatch==1.33",
+        "langchain-protocol==0.0.18",
+        "langsmith==0.10.18",
+        "packaging==26.3",
+        "pydantic==2.13.4",
+        "tenacity==9.1.4",
+        "typing_extensions==4.16.0",
+        "uuid_utils==0.17.0"
+      ],
+      "ref": "langchain-core==1.5.4"
+    },
+    {
+      "dependsOn": [
+        "typing_extensions==4.16.0"
+      ],
+      "ref": "langchain-protocol==0.0.18"
+    },
+    {
+      "dependsOn": [
+        "langchain-core==1.5.4",
+        "langgraph==1.2.19",
+        "pydantic==2.13.4"
+      ],
+      "ref": "langchain==1.3.15"
+    },
+    {
+      "dependsOn": [
+        "langchain-core==1.5.4",
+        "ormsgpack==1.12.2"
+      ],
+      "ref": "langgraph-checkpoint==4.3.1"
+    },
+    {
+      "dependsOn": [
+        "langchain-core==1.5.4",
+        "langgraph-checkpoint==4.3.1"
+      ],
+      "ref": "langgraph-prebuilt==1.1.0"
+    },
+    {
+      "dependsOn": [
+        "httpx==0.28.1",
+        "langchain-core==1.5.4",
+        "langchain-protocol==0.0.18",
+        "orjson==3.11.9",
+        "websockets==15.0.1"
+      ],
+      "ref": "langgraph-sdk==0.4.6"
+    },
+    {
+      "dependsOn": [
+        "langchain-core==1.5.4",
+        "langgraph-checkpoint==4.3.1",
+        "langgraph-prebuilt==1.1.0",
+        "langgraph-sdk==0.4.6",
+        "pydantic==2.13.4",
+        "xxhash==4.0.0"
+      ],
+      "ref": "langgraph==1.2.19"
+    },
+    {
+      "dependsOn": [
+        "anyio==4.14.2",
+        "distro==1.9.0",
+        "httpx==0.28.1",
+        "orjson==3.11.9",
+        "packaging==26.3",
+        "pydantic==2.13.4",
+        "requests-toolbelt==1.0.0",
+        "requests==2.34.2",
+        "sniffio==1.3.1",
+        "typing_extensions==4.16.0",
+        "uuid_utils==0.17.0",
+        "websockets==15.0.1",
+        "xxhash==4.0.0",
+        "zstandard==0.25.0"
+      ],
+      "ref": "langsmith==0.10.18"
+    },
+    {
+      "ref": "orjson==3.11.9"
+    },
+    {
+      "ref": "ormsgpack==1.12.2"
+    },
+    {
+      "ref": "packaging==26.3"
+    },
+    {
+      "dependsOn": [
+        "annotated-types==0.8.0",
+        "pydantic_core==2.46.4",
+        "typing-inspection==0.4.4",
+        "typing_extensions==4.16.0"
+      ],
+      "ref": "pydantic==2.13.4"
+    },
+    {
+      "dependsOn": [
+        "typing_extensions==4.16.0"
+      ],
+      "ref": "pydantic_core==2.46.4"
+    },
+    {
+      "dependsOn": [
+        "requests==2.34.2"
+      ],
+      "ref": "requests-toolbelt==1.0.0"
+    },
+    {
+      "dependsOn": [
+        "certifi==2026.10.23",
+        "charset-normalizer==3.5.0",
+        "idna==3.18",
+        "urllib3==2.8.0"
+      ],
+      "ref": "requests==2.34.2"
+    },
+    {
+      "ref": "rfc8785==0.1.4"
+    },
+    {
+      "dependsOn": [
+        "langchain==1.3.15",
+        "langgraph==1.2.19",
+        "tallwright-cloud==1.0.0rc2",
+        "tallwright-core==0.1.1"
+      ],
+      "ref": "root-component"
+    },
+    {
+      "ref": "sniffio==1.3.1"
+    },
+    {
+      "dependsOn": [
+        "tallwright-core==0.1.1"
+      ],
+      "ref": "tallwright-cloud==1.0.0rc2"
+    },
+    {
+      "dependsOn": [
+        "pydantic==2.13.4",
+        "rfc8785==0.1.4"
+      ],
+      "ref": "tallwright-core==0.1.1"
+    },
+    {
+      "ref": "tenacity==9.1.4"
+    },
+    {
+      "dependsOn": [
+        "typing_extensions==4.16.0"
+      ],
+      "ref": "typing-inspection==0.4.4"
+    },
+    {
+      "ref": "typing_extensions==4.16.0"
+    },
+    {
+      "ref": "urllib3==2.8.0"
+    },
+    {
+      "ref": "uuid_utils==0.17.0"
+    },
+    {
+      "ref": "websockets==15.0.1"
+    },
+    {
+      "ref": "xxhash==4.0.0"
+    },
+    {
+      "ref": "zstandard==0.25.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "Tallwright - Cloud Proof for LangChain/LangGraph v1 agents, as one middleware",
+      "externalReferences": [
+        {
+          "comment": "from pyproject urls: Documentation",
+          "type": "documentation",
+          "url": "https://docs.tallwright.com/adapters"
+        },
+        {
+          "comment": "from pyproject urls: Issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/tallwright-hq/tallwright-python/issues"
+        },
+        {
+          "comment": "from pyproject urls: Source",
+          "type": "other",
+          "url": "https://github.com/tallwright-hq/tallwright-python"
+        },
+        {
+          "comment": "from pyproject urls: Homepage",
+          "type": "website",
+          "url": "https://www.tallwright.com"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "tallwright-langgraph",
+      "type": "library",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "7.3.0"
+        },
+        {
+          "description": "Python library for CycloneDX",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python-lib/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-python-lib/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-python-library.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python-lib/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python-lib"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python-lib/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "11.12.0"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}

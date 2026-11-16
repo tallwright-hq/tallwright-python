@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tallwright-core"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tallwright - shared record schema, content-addressing, and RFC 6962 Merkle primitives"
 readme = "README.md"
 requires-python = ">=3.11"
