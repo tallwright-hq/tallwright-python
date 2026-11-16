@@ -18,7 +18,10 @@ name: Publish
 #    same bytes; and they must be the bytes the release recorded in release/<tag>.sha256 (tools/release.py sums).
 # 6. A wheel the index already holds, byte for byte, is not uploaded again; one it holds with other bytes
 #    refuses the run. The SDK's wheel waits for a run in which the index already holds its core's: the first
-#    run of a new core uploads the core alone, and the next one the SDK (tools/release.py index).
+#    run of a new core uploads the core alone, and the next one the SDK (tools/release.py index). A run
+#    creates at most one project the index does not hold yet, the first by name, and holds the other new
+#    ones back: an index takes one pending trusted publisher for this repository, workflow and environment
+#    at a time.
 # 7. Only the upload job may ask for an OIDC token. It checks out nothing and runs no code of this
 #    repository. It checks the wheels it was handed against the hashes the build job recorded. The index
 #    exchanges the token for a short-lived credential only for the publisher registered there: this
@@ -91,15 +94,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python tools/release.py release "$TAG"
 
-      - name: The two wheels, built twice, the second time from a fresh worktree; one commit, one set of bytes
+      - name: Every package's wheel, built twice, the second time from a fresh worktree; one commit, one set of bytes
         shell: bash
         run: |
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-core
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" packages/tallwright-cloud
+          for package in packages/*/; do python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/dist" "$package"; done
           git worktree add --detach "$RUNNER_TEMP/again" HEAD
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-core"
-          python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/packages/tallwright-cloud"
-          test "$(ls "$RUNNER_TEMP/dist" | wc -l)" = 2
+          for package in packages/*/; do python -m build --no-isolation --wheel --outdir "$RUNNER_TEMP/again-dist" "$RUNNER_TEMP/again/$package"; done
+          test "$(ls "$RUNNER_TEMP/dist" | wc -l)" = "$(ls -d packages/*/ | wc -l)"
           for f in "$RUNNER_TEMP"/dist/*.whl; do
             cmp "$f" "$RUNNER_TEMP/again-dist/$(basename "$f")" || { echo "NOT REPRODUCIBLE: $(basename "$f") differs between two builds of one commit"; exit 1; }
           done
@@ -110,7 +111,7 @@ jobs:
           TAG: ${{ inputs.tag }}
         run: python tools/release.py sums "$RUNNER_TEMP/dist" "$TAG"
 
-      - name: What the index already holds is these bytes, and is not uploaded again; the SDK waits for its core
+      - name: What the index already holds is these bytes, and is not uploaded again; the rest waits for its core
         shell: bash
         env:
           INDEX: ${{ inputs.index }}

@@ -57,7 +57,7 @@ from tallwright_core.document import load_document
 PATH = "/v1/records"
 #: Far above any receipt, far below anything that costs memory.
 MAX_ANSWER = 1 << 20
-USER_AGENT = "tallwright-cloud/1.0.0rc1"
+USER_AGENT = "tallwright-cloud/1.0.0rc2"
 
 
 def is_loopback(host: str) -> bool:

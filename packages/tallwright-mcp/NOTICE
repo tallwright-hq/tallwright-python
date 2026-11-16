@@ -1,0 +1,6 @@
+Tallwright MCP adapter
+Copyright 2026 David Jöbstl
+
+Licensed under the Apache License, Version 2.0: tallwright-mcp. The license text is in the LICENSE file
+beside this one. The adapter requires tallwright-cloud and tallwright-core, which are under the same
+license.

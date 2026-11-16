@@ -15,7 +15,7 @@ name = "tallwright-cloud"
 # A release candidate first, and 1.0.0 once it has been used for real. While it is the only release, a
 # plain `pip install tallwright-cloud` installs it: pip leaves a pre-release out only when a final release
 # matches. `__version__` and the User-Agent say the same.
-version = "1.0.0rc1"
+version = "1.0.0rc2"
 description = "Tallwright - Cloud Proof from Python: the content stays with you, a salted address is recorded"
 readme = "README.md"
 requires-python = ">=3.11"

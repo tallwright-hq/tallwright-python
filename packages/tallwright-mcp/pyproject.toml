@@ -1,0 +1,43 @@
+# Apache-2.0: the license text and the NOTICE are beside this file, and the wheel carries both.
+# A Cloud Proof adapter (https://docs.tallwright.com/adapters): it hands a tallwright-cloud client the
+# events it sees, and adds no recorder of its own.
+#
+# `Private :: Do Not Upload`, which every index refuses, keeps a build of this from being uploaded by
+# accident; it is removed in the commit a release is made from, and only there.
+[build-system]
+# Pinned for the reason given in tallwright-core's pyproject.
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tallwright-mcp"
+version = "0.1.0"
+description = "Tallwright - Cloud Proof for MCP tool calls, by wrapping the client session you already hold"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Tallwright" }]
+keywords = ["ai-agents", "audit", "tamper-evident", "evidence", "mcp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Legal Industry",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "tallwright-core==0.1.*,>=0.1.1",
+    "tallwright-cloud>=1.0.0rc1,<2",
+]
+
+[project.urls]
+Homepage = "https://www.tallwright.com"
+Documentation = "https://docs.tallwright.com/adapters"
+Source = "https://github.com/tallwright-hq/tallwright-python"
+Issues = "https://github.com/tallwright-hq/tallwright-python/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tallwright_mcp"]
